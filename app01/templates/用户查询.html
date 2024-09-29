@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户查询</title>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1/css/bootstrap.css' %}">
+</head>
+<style>
+    .container {
+        background-color: aliceblue;
+        margin: auto;
+        margin-top: 10%;
+        height: 400px;
+        width: 600px;
+        border: 1px solid black;
+        box-shadow: 5px 5px 20px #aaa;
+    }
+</style>
+<script>
+    function myFunction(){
+        alert("删除成功");
+    }
+</script>
+<body>
+
+    <div class="container">
+        <a href="/login/">点击添加</a>
+        <div class="bs-example" data-example-id="striped-table" style="margin-top: 5%;">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>用户名</th>
+                  <th>密码</th>
+                  <th>电话</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                {% for i in data_list %}
+                <tr>
+                  <th scope="row">{{i.id}}</th>
+                  <td>{{i.username}}</td>
+                  <td>{{i.password}}</td>
+                  <td>{{i.mobile}}</td>
+                  <td>
+{#                      <a href="/delete/?nid={{ i.id }}">删除</a>#}
+                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target=".bs-example-modal-sm" onclick="myFunction(),window.location.href='/delete/?nid={{ i.id }}'">删除</button>
+
+                  </td>
+                </tr>
+               {% endfor %}
+              </tbody>
+            </table>
+          </div>
+    </div>
+    <script src="{% static '/js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static '/plugins/bootstrap-3.4.1/js/bootstrap.js' %}"></script>
+</body>
+</html>
